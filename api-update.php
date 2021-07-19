@@ -9,9 +9,10 @@
     $id = $Jdata['sid'];
     $name = $Jdata['name'];
     $age = $Jdata['age'];
+    $state = $Jdata['state'];
     $city = $Jdata['city'];
     $gender = $Jdata['gender'];
-    $sql = "UPDATE api_data SET name='$name',age='$age',city='$city',gender='$gender' WHERE id='$id'";
+    $sql = "UPDATE api_data SET name='$name',age='$age',state='$state',city='$city',gender='$gender' WHERE id='$id'";
     if(mysqli_query($conn,$sql)){
         $arr = ["message" => "Record Updated Successfully","status"=>true];
         echo json_encode($arr);

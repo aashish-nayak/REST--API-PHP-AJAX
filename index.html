@@ -22,6 +22,7 @@
                         <h2 class="card-title text-center">Drop Your Details</h2>
                         <div class="card-body py-md-4">
                             <form role="form" id="myForm" name="myform">
+                                <input type="hidden" name="id">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="name" placeholder="Name">
                                 </div>
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDistrict">State</label>
-                                    <select class="form-control" id="inputState">
+                                    <select class="form-control" name="state" id="inputState">
                                         <option value="SelectState">Select State</option>
                                         <option value="Andra Pradesh">Andra Pradesh</option>
                                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -109,6 +110,7 @@
                                     <th>Name</th>
                                     <th>age</th>
                                     <th>Gender</th>
+                                    <th>State</th>
                                     <th>City</th>
                                     <th>Actions</th>
                                 </tr>

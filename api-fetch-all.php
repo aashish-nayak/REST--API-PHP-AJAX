@@ -9,8 +9,7 @@
     $result = mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
         $rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
-        $data = json_encode($rows);
-        echo $data;
+        echo json_encode($rows);
     }else{
         $arr = ["message" => "No Record Found","status"=>false];
         echo json_encode($arr);

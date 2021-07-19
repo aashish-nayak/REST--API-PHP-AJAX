@@ -8,9 +8,10 @@
     $Jdata = json_decode(file_get_contents("php://input"),true);
     $name = $Jdata['name'];
     $age = $Jdata['age'];
+    $state = $Jdata['state'];
     $city = $Jdata['city'];
     $gender = $Jdata['gender'];
-    $sql = "INSERT INTO api_data(name,age,city,gender)VALUES('$name','$age','$city','$gender')";
+    $sql = "INSERT INTO api_data(name,age,state,city,gender)VALUES('$name','$age','$state','$city','$gender')";
     if(mysqli_query($conn,$sql)){
         $arr = ["message" => "Record Inserted Successfully","status"=>true];
         echo json_encode($arr);
