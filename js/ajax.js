@@ -1,18 +1,19 @@
 $(document).ready(function () {
+  var env = "http://localhost/PHP-TEST/REST%20-API/";
   function table(data) { 
-    var html='';
-    for(var i=data.length-1;i>=0;i--){
+    let html='';
+    for(let i=data.length-1;i>=0;i--){
       html += '<tr> <td>'+data[i].id+'</td> <td> <a href="#"> <div class="d-flex align-items-center"> <div class="avatar avatar-pink mr-3">'+data[i].name[0]+'</div> <div class=""> <p class="font-weight-bold mb-0">'+data[i].name+'</p> <p class="text-muted mb-0">'+data[i].name.toLowerCase().replace(' ','')+'@example.com</p> </div> </div> </a> </td> <td>'+data[i].age+'</td> <td>'+data[i].gender+'</td> <td>'+data[i].state+'</td> <td>'+data[i].city+'</td> <td> <div class="dropdown"> <button class="btn btn-sm btn-icon" type="button" id="dropdownMenuButton'+i+'" data-toggle="dropdown" > <i class="bx bx-dots-horizontal-rounded" data-toggle="tooltip" data-placement="top" title="Actions"></i> </button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton'+i+'"> <a class="dropdown-item edit" href="#" data-edit="'+data[i].id+'"><i class="bx bxs-pencil mr-2"></i> Edit Profile</a> <a class="dropdown-item text-danger delete"  data-del="'+data[i].id+'" href="#"><i class="bx bxs-trash mr-2"></i>Remove</a> </div> </div> </td> </tr>';
     }
     return html;
   }
   function loadData() {
     $.ajax({
-      url: "http://localhost/PHP-practice/REST-API/api-fetch-all.php",
+      url: env+"api-fetch-all.php",
       method: "POST",
       contentType: "JSON",
       success: function (data) {
-        var html = table(data);
+        let html = table(data);
         $('#load').html(html);
       }
     });
@@ -20,31 +21,31 @@ $(document).ready(function () {
   loadData();
 
   function Notify(data) {
-    var message;
+    let message;
     if(data.status=true){
        message = '<div class="alert alert-success alert-dismissible" style="position: fixed;bottom:5%;left:2%;z-index:999;" role="alert"><strong>'+data.message+'</strong> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>';
     }else{
       message = '<div class="alert alert-danger alert-dismissible" style="position: fixed;bottom:5%;left:2%;z-index:999;" role="alert"><strong>'+data.message+'</strong> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>';
     }
-    var success = $(message).fadeIn(800).delay( 2000 ).fadeOut( 600 );
+    let success = $(message).fadeIn(800).delay( 2000 ).fadeOut( 600 );
     $("body").append(success);
   }
   $('#myForm').on('submit',(e)=>{
     e.preventDefault();
-    var id = e.target.id.value;
-    var name = e.target.name.value;
-    var age = e.target.age.value;
-    var gender = e.target.gender.value;
-    var state = e.target.state.value;
-    var city = e.target.city.value;
-    var obj;
-    var url;
+    let id = e.target.id.value;
+    let name = e.target.name.value;
+    let age = e.target.age.value;
+    let gender = e.target.gender.value;
+    let state = e.target.state.value;
+    let city = e.target.city.value;
+    let obj;
+    let url;
     if(id==""){
       obj = { name:name,age:age,gender:gender,state:state,city:city }
-      url = "http://localhost/PHP-practice/REST-API/api-insert.php";
+      url = env+"api-insert.php";
     }else{
       obj = {sid:id,name:name,age:age,gender:gender,state:state,city:city }
-      url = "http://localhost/PHP-practice/REST-API/api-update.php";
+      url = env+"api-update.php";
     }
     if(name && age && gender && state && city !=""){
       $.ajax({
@@ -66,10 +67,10 @@ $(document).ready(function () {
 
   $(document).on('click','.delete',(e)=>{
     e.preventDefault();
-    var id = $(e.target).data('del');
+    let id = $(e.target).data('del');
     if(confirm("Are You Sure Want to Delete this Data")){
       $.ajax({
-        url: "http://localhost/PHP-practice/REST-API/api-delete.php",
+        url: env+"api-delete.php",
         method: "POST",
         contentType: "JSON",
         data: JSON.stringify({'sid':id}),
@@ -84,9 +85,9 @@ $(document).ready(function () {
   });
   $(document).on('click','.edit',(e)=>{
     e.preventDefault();
-    var id = $(e.target).data('edit');
+    let id = $(e.target).data('edit');
       $.ajax({
-        url: "http://localhost/PHP-practice/REST-API/api-fetch-single.php",
+        url: env+"api-fetch-single.php",
         method: "POST",
         contentType: "JSON",
         data: JSON.stringify({'sid':id}),
