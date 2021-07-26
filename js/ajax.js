@@ -2,8 +2,14 @@ $(document).ready(function () {
   var env = "http://localhost/PHP-TEST/REST%20-API/";
   function table(data) { 
     let html='';
+    var avtar;
     for(let i=data.length-1;i>=0;i--){
-      html += '<tr> <td>'+data[i].id+'</td> <td> <a href="#"> <div class="d-flex align-items-center"> <div class="avatar avatar-pink mr-3">'+data[i].name[0]+'</div> <div class=""> <p class="font-weight-bold mb-0">'+data[i].name+'</p> <p class="text-muted mb-0">'+data[i].name.toLowerCase().replace(' ','')+'@example.com</p> </div> </div> </a> </td> <td>'+data[i].age+'</td> <td>'+data[i].gender+'</td> <td>'+data[i].state+'</td> <td>'+data[i].city+'</td> <td> <div class="dropdown"> <button class="btn btn-sm btn-icon" type="button" id="dropdownMenuButton'+i+'" data-toggle="dropdown" > <i class="bx bx-dots-horizontal-rounded" data-toggle="tooltip" data-placement="top" title="Actions"></i> </button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton'+i+'"> <a class="dropdown-item edit" href="#" data-edit="'+data[i].id+'"><i class="bx bxs-pencil mr-2"></i> Edit Profile</a> <a class="dropdown-item text-danger delete"  data-del="'+data[i].id+'" href="#"><i class="bx bxs-trash mr-2"></i>Remove</a> </div> </div> </td> </tr>';
+      if(i%2==0){
+        avtar = 'avatar-pink';
+      }else if(i%2==1){
+        avtar = 'avatar-blue';
+      }
+      html += '<tr> <td>'+data[i].id+'</td> <td> <a href="#"> <div class="d-flex align-items-center"> <div class="avatar '+avtar+' mr-3">'+data[i].name[0]+'</div> <div class=""> <p class="font-weight-bold mb-0">'+data[i].name+'</p> <p class="text-muted mb-0">'+data[i].name.toLowerCase().replace(' ','')+'@example.com</p> </div> </div> </a> </td> <td>'+data[i].age+'</td> <td>'+data[i].gender+'</td> <td>'+data[i].state+'</td> <td>'+data[i].city+'</td> <td> <div class="dropdown"> <button class="btn btn-sm btn-icon" type="button" id="dropdownMenuButton'+i+'" data-toggle="dropdown" > <i class="bx bx-dots-horizontal-rounded" data-toggle="tooltip" data-placement="top" title="Actions"></i> </button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton'+i+'"> <a class="dropdown-item edit" href="#" data-edit="'+data[i].id+'"><i class="bx bxs-pencil mr-2"></i> Edit Profile</a> <a class="dropdown-item text-danger delete"  data-del="'+data[i].id+'" href="#"><i class="bx bxs-trash mr-2"></i>Remove</a> </div> </div> </td> </tr>';
     }
     return html;
   }
